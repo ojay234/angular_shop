@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "eshop-fe74d": {
+      "hosting": {
+        "eshop": [
+          "eshop-fe74d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "eshop-fe74d"
+  }
+}
