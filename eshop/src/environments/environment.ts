@@ -12,5 +12,5 @@ export const environment = {
     authDomain: 'eshop-fe74d.firebaseapp.com',
     messagingSenderId: '835442806648',
   },
-  production: false
+  production: false,
 };
