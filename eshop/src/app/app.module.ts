@@ -22,6 +22,14 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { UserService } from './user.service';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { AdminAuthGuardService } from './admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './category.service';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './product.service';
+import { DataTablesModule } from 'angular-datatables';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +43,14 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    DataTablesModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
@@ -45,7 +58,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 
     NgbModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
@@ -66,14 +79,24 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
       },
 
       {
+        path: 'admin/products/new',
+        component: ProductFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService],
+      },
+      {
+        path: 'admin/products/:id',
+        component: ProductFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService],
+      },
+      {
         path: 'admin/products',
         component: AdminProductsComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService, AdminAuthGuardService],
       },
       {
         path: 'admin/orders',
         component: AdminOrdersComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService, AdminAuthGuardService],
       },
     ]),
   ],
@@ -82,6 +105,9 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
     AuthService,
     AuthGuardService,
     UserService,
+    AdminAuthGuardService,
+    CategoryService,
+    ProductService,
   ],
   bootstrap: [AppComponent],
 })
