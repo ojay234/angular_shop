@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Product } from './models/product';
-import { take } from 'rxjs';
+import { take, Observable } from 'rxjs';
+import { shoppingCart } from './models/shopping-cart';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,9 @@ export class ShoppingCartService {
     });
   }
 
-  async getCart() {
+  async getCart(): Promise<Observable<shoppingCart>> {
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId);
+    return this.db.object('/shopping-carts/' + cartId).valueChanges();
   }
 
   private async getOrCreateCartId(): Promise<string> {
@@ -35,6 +36,14 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: Product) {
+    this.updateItemQuantity(product, 1);
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItemQuantity(product, -1);
+  }
+
+  private async updateItemQuantity(product: Product, change: number) {
     let cartId = await this.getOrCreateCartId();
     const item$ = this.getItem(cartId, product.key);
     item$
@@ -44,7 +53,7 @@ export class ShoppingCartService {
         if (item.payload.exists()) {
           item$.update({
             product: product,
-            quantity: item.payload.val().quantity + 1,
+            quantity: item.payload.val().quantity + change,
           });
         } else {
           item$.update({
@@ -54,7 +63,7 @@ export class ShoppingCartService {
               category: product.category,
               imageUrl: product.imageUrl,
             },
-            quantity: 1,
+            quantity: change,
           });
         }
       });
