@@ -1,1 +1,40 @@
-<p>admin-orders works!</p>
+<h3>My Orders</h3>
+<div *ngFor="orders$ | async as orders">
+  <ng-container *ngIf="orders; else orderInfo">
+    <!-- <table class="table table-hover table-bordered"> -->
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Order Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders | async">
+          <td>{{ order.shipping.name }}</td>
+          <td>
+            {{ order.shipping.addressLine1
+            }}<span *ngIf="order.shipping.address2"
+              >, {{ order.shipping.addressLine2 }}</span
+            >
+          </td>
+          <td>{{ order.datePlaced | date : "medium" }}</td>
+          <td>
+            <a
+              [routerLink]="['/order-detail', order.$key]"
+              class="btn btn-sm btn-primary"
+            >
+              View
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>
+
+<ng-template #orderInfo>
+  <p class="alert alert-info">You don't have any orders yet.</p>
+</ng-template>
