@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from 'shared/services/auth.service';
 import { map } from 'rxjs/operators';
 
 @Injectable({

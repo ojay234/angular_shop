@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRoute } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { Observable, of, switchMap } from 'rxjs';
-import { AppUser } from './models/app-user';
+import { AppUser } from 'shared/models/app-user';
 import { UserService } from './user.service';
 
 @Injectable({
