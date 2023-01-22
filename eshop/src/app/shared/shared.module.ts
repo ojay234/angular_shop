@@ -9,11 +9,19 @@ import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   declarations: [ProductCardComponent, ProductQuantityComponent],
-  imports: [CommonModule],
-  exports: [ProductCardComponent, ProductQuantityComponent],
+  imports: [CommonModule, FormsModule, CustomFormsModule],
+  exports: [
+    ProductCardComponent,
+    ProductQuantityComponent,
+    FormsModule,
+    CustomFormsModule,
+    CommonModule,
+  ],
   providers: [
     AuthService,
     AuthGuardService,

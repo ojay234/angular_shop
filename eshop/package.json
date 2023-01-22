@@ -26,6 +26,7 @@
     "datatables.net": "^1.11.3",
     "datatables.net-dt": "^1.11.3",
     "firebase": "^9.15.0",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
     "ng2-validation": "^4.2.0",
     "rxjs": "~7.5.0",
