@@ -1,6 +1,6 @@
 <h3>My Orders</h3>
 <div *ngIf="orders$ | async as orders">
-  <ng-container *ngIf="orders; else orderInfo">
+  <ng-container *ngIf="orders.length; else orderInfo">
     <!-- <table class="table table-hover table-bordered"> -->
     <table class="table table-hover">
       <thead>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of orders$ | async">
+        <tr *ngFor="let order of orders">
           <td>{{ order.shipping.name }}</td>
           <td>
             {{ order.shipping.addressLine1
@@ -22,7 +22,12 @@
           </td>
           <td>{{ order.datePlaced | date : "medium" }}</td>
           <td>
-            <a href="#">View</a>
+            <a
+              [routerLink]="['/order-detail', order.$key]"
+              class="btn btn-sm btn-primary"
+            >
+              <i class="fa fa-eye"></i>
+            </a>
           </td>
         </tr>
       </tbody>

@@ -11,10 +11,27 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [ProductCardComponent, ProductQuantityComponent],
-  imports: [CommonModule, FormsModule, CustomFormsModule],
+  declarations: [
+    ProductCardComponent,
+    ProductQuantityComponent,
+    OrderDetailComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CustomFormsModule,
+    RouterModule.forChild([
+      {
+        path: 'order-detail/:id',
+        component: OrderDetailComponent,
+        canActivate: [AuthGuardService],
+      },
+    ]),
+  ],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,

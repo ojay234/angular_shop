@@ -10,7 +10,7 @@ import { Order } from 'shared/models/order';
   styleUrls: ['./my-orders.component.css'],
 })
 export class MyOrdersComponent implements OnInit {
-  orders$: any;
+  orders$: Observable<any[]>;
 
   constructor(
     private authService: AuthService,
