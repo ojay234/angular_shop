@@ -1,20 +1,16 @@
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-      <app-product-filter [category]="category"></app-product-filter>
-    </div>
-    <div class="col">
-      <div class="row" *ngIf="cart$ | async as cart">
-        <ng-container *ngFor="let p of filteredProducts; let i = index">
-          <div class="col">
-            <app-product-card
-              [product]="p"
-              [shopping-cart]="cart"
-            ></app-product-card>
-          </div>
-          <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
-        </ng-container>
+<div class="content">
+  <div class="category">
+    <app-product-filter [category]="category"></app-product-filter>
+  </div>
+  <div class="product" *ngIf="cart$ | async as cart">
+    <ng-container *ngFor="let p of filteredProducts; let i = index">
+      <div class="col">
+        <app-product-card
+          [product]="p"
+          [shopping-cart]="cart"
+        ></app-product-card>
       </div>
-    </div>
+      <div *ngIf="(i + 1) % 3 === 0" class="w-100"></div>
+    </ng-container>
   </div>
 </div>

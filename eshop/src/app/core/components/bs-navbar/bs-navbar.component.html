@@ -1,22 +1,11 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-  <a class="navbar-brand" routerLink="/">
-    <i class="fa fa-leaf" aria-hidden="true"></i>
-  </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar bg-light fixed-top">
+  <div class="navbar_content">
+    <a class="navbar-brand" routerLink="/">
+      <i class="fa fa-leaf" aria-hidden="true"></i>
+    </a>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+    <div class="list">
+      <div class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
           <span
@@ -25,14 +14,14 @@
             >{{ cart.totalItemsCount }}</span
           >
         </a>
-      </li>
+      </div>
       <ng-template #anonymousUser>
-        <li class="nav-item">
+        <div class="nav-item">
           <a class="nav-link" routerLink="/login">Login</a>
-        </li>
+        </div>
       </ng-template>
 
-      <li
+      <div
         ngbDropdown
         class="nav-item dropdown"
         *ngIf="appUser; else anonymousUser"
@@ -59,7 +48,7 @@
 
           <a class="dropdown-item" (click)="logout()">Log Out</a>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </nav>
