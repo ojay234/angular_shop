@@ -1,51 +1,62 @@
-<h1>Shopping Cart</h1>
-<ng-container *ngIf="cart$ | async as cart">
-  <p>
-    you have {{ cart.totalItemsCount }} items in your shopping cart.
-    <button
-      *ngIf="cart.items.length"
-      (click)="clearCart()"
-      class="btn btn-light btn-sm"
+<div class="cart-items">
+  <ng-container *ngIf="cart$ | async as cart">
+    <p class="sub_head">
+      <span
+        >You have <em>{{ cart.totalItemsCount }}</em> items in your shopping
+        cart</span
+      >
+      <button
+        *ngIf="cart.items.length"
+        (click)="clearCart()"
+        class="btn btn-danger btn-sm"
+      >
+        Clear
+      </button>
+    </p>
+    <table class="table" *ngIf="cart.items.length">
+      <thead class="table-light">
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart.items" class="tr">
+          <td class="td">
+            <div
+              [style.backgroundImage]="'url(' + item.imageUrl + ')'"
+              class="thumbnail"
+              alt=""
+            ></div>
+            {{ item.title }}
+          </td>
+          <td>
+            <div class="td_2">
+              <app-product-quantity
+                [product]="item"
+                [shopping-cart]="cart"
+              ></app-product-quantity>
+            </div>
+          </td>
+
+          <td>
+            <div class="td_2">
+              {{ item.totalPrice | currency : "USD" : true }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>{{ cart.totalPrice | currency : "USD" : true }}</th>
+        </tr>
+      </tfoot>
+    </table>
+    <a *ngIf="cart.items.length" routerLink="/check-out" class="btn btn-primary"
+      >check out</a
     >
-      Clear Shopping Cart
-    </button>
-  </p>
-  <table class="table" *ngIf="cart.items.length">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cart.items">
-        <td>
-          <div
-            [style.backgroundImage]="'url(' + item.imageUrl + ')'"
-            class="thumbnail"
-            alt=""
-          ></div>
-        </td>
-        <td>{{ item.title }}</td>
-        <app-product-quantity
-          [product]="item"
-          [shopping-cart]="cart"
-        ></app-product-quantity>
-        <td>{{ item.totalPrice | currency : "USD" : true }}</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th>{{ cart.totalPrice | currency : "USD" : true }}</th>
-      </tr>
-    </tfoot>
-  </table>
-  <a *ngIf="cart.items.length" routerLink="/check-out" class="btn btn-primary"
-    >check out</a
-  >
-</ng-container>
+  </ng-container>
+</div>

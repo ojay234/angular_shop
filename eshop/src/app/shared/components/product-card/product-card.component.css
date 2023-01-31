@@ -3,5 +3,16 @@
 }
 .card {
   margin-bottom: 30px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  width: 110%;
+  margin-left: -4%;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 16rem;
+    margin: 0 0;
+  }
 }

@@ -1,5 +1,5 @@
-<nav class="navbar bg-light fixed-top">
-  <div class="navbar_content">
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <div class="container">
     <a class="navbar-brand" routerLink="/">
       <i class="fa fa-leaf" aria-hidden="true"></i>
     </a>
@@ -16,14 +16,14 @@
         </a>
       </div>
       <ng-template #anonymousUser>
-        <div class="nav-item">
+        <div class="nav-item name">
           <a class="nav-link" routerLink="/login">Login</a>
         </div>
       </ng-template>
 
       <div
         ngbDropdown
-        class="nav-item dropdown"
+        class="nav-item dropdown menu"
         *ngIf="appUser; else anonymousUser"
       >
         <a

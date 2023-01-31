@@ -2,18 +2,18 @@
   cursor: pointer;
 }
 
-.navbar_content {
-  display: flex;
-  width: 100%;
-  padding: 0 5%;
-  justify-content: space-between;
-  overflow: hidden;
-  margin: auto 0;
-  align-items: center;
-}
-
 .list {
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
+}
+
+.menu {
+  margin-right: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .menu {
+    margin-right: 0px;
+  }
 }

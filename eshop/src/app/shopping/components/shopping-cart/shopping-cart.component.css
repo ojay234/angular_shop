@@ -1,10 +1,45 @@
-p {
+.cart-items {
+  font-size: 12px;
+}
+
+.sub_head {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+}
+
+.sub_head p {
   margin-top: 100px;
 }
 
 .thumbnail {
-  width: 80px;
-  height: 80px;
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
   background-size: cover;
+}
+
+.td {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.td_2 {
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .cart-items {
+    font-size: 16px;
+  }
+  .thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-size: cover;
+  }
+  .td_2 {
+    margin-top: 28px;
+  }
 }
