@@ -9,19 +9,48 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 80%;
   margin: 0 auto;
 }
 
 @media only screen and (min-width: 768px) {
+  .category {
+    width: 40%;
+  }
   .content {
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 50px;
+    gap: 30px;
   }
   .product {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 50%;
+    justify-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
+@media only screen and (min-width: 990px) {
+  .category {
+    width: 26%;
+  }
+  .product {
+    justify-items: flex-start;
+    gap: 30px;
+    width: 68%;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .category {
+    width: 23%;
+  }
+  .product {
+    justify-items: flex-start;
+    gap: 30px;
+    width: 70%;
   }
 }
